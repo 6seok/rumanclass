@@ -16,3 +16,50 @@ Future plans include developing classifiers for Holstein, Jersey, Charolais, and
 ***
 
 ##  Tutorial
+
+### Workflow
+![image](https://github.com/user-attachments/assets/ee4b9abe-bac2-44ff-b10f-a3ed6defe993)
+
+### For shotgun sequencing
+1. Pre-processing
+```
+fastp fastp \
+		--in1 Sample_1.fastq.gz \
+		--in2 Sample_2.fastq.gz \
+		--out1 Sample_fastp_1.fastq.gz \
+		--out2 Sample_fastp_1.fastq.gz \
+		--unpaired1  Sample_fastp_unpaired_1.fastq.gz \
+		--unpaired2  Sample__fastp_unpaired_2.fastq.gz \
+		--html  Sample_fastp.html \
+		--thread 16 --verbose
+```
+2. Filter host and feed ingredient genome
+```
+## Build bowtie2 index
+bowtie2-build -f SNU_Hanwoo_genome.fna ./SNU_Hanwoo_bowtie2_db/SNU_Hanwoo_genome.btindex --threads 10
+```
+```
+## Mapping using bowtie2
+bowtie2 \
+    --local -p 40 \
+    -x SNU_Hanwoo_bowtie2_db/SNU_Hanwoo_genome.btindex \
+    -1 Sample_fastp_unpaired_1.fastq.gz \
+    -2 Sample_fastp_unpaired_2.fastq.gz \
+    -S Sample_bowtie2.sam 2> ${main_out}_bowtie2_hanwoo.log
+samtools view \
+    --threads 40 -Sb Sample_bowtie2.sam > Sample_bowtie2.bam
+samtools view \
+    --threads 40 -bf 0x04 Sample_bowtie2.bam > Sample_Hanwoo_filtered.bam && \
+    samtools bam2fq Sample_Hanwoo_filtered.bam > Sample_Hanwoo_filtered.fastq
+```
+3. SortMeRNA for extract rRNA sequence
+```
+
+```
+4. QIIME2 import
+```
+
+```
+
+
+
