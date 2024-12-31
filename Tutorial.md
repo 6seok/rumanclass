@@ -158,5 +158,56 @@ qiime tools import \
     --type 'FeatureTable[Frequency]'
 ```
 ```
+qiime clawback sequence-variants-from-samples \
+    --i-samples merged_processed.qza \
+    --o-sequences merged_processed_sv.qza
+```
 
+## Building Weighted Classifiers for Each Database
+Weighted classifiers are constructed for each database by applying sequence-variant-based weighting. Refer to the database-specific shell scripts for detailed instructions on the construction process.
+
+### 1. Create taxonomy classification file
+```
+qiime feature-classifier classify-sklearn \
+    --i-classifier specific_DB_classifier.qza \
+    --i-reads merged_processed_sv.qza \
+    --p-confidence disable \
+    --p-n-jobs 20 \
+    --o-classification Specific_DB_merged_processed_classification.qza
+```
+### 2. Filter Mitochondria & Chloroplast
+```
+## filter Mitochondria & Chloroplast
+qiime tools export \
+    --input-path Specific_DB_merged_processed_classification.qza \
+    --output-path ./
+
+mv taxonomy.tsv Specific_DB_merged_processed_classification.tsv
+grep -v -e "Mitochondria" -e "Chloroplast" Specific_DB_merged_processed_classification.tsv > Specific_DB_merged_processed_classification_filtered.tsv
+
+qiime tools import \
+    --input-path Specific_DB_merged_processed_classification_filtered.tsv \
+    --output-path Specific_DB_merged_processed_classification_filtered.qza \
+    --type 'FeatureData[Taxonomy]'
+
+qiime taxa filter-table \
+    --i-table merged_processed.qza \
+    --i-taxonomy Specific_DB_merged_processed_classification.qza \
+    --p-exclude Chloroplast,Mitochondria \
+    --o-filtered-table merged_processed_filtered.qza
+```
+### 3. Generate class weights and duild classifier
+```
+qiime clawback generate-class-weights \
+    --i-reference-sequences Specific_DB_seqs_dereplicated_uniq.qza \
+    --i-reference-taxonomy Specific_DB_tax_dereplicated_uniq.qza \
+    --i-samples merged_processed_filtered.qza \
+    --i-taxonomy-classification Specific_DB_merged_processed_classification_filtered.qza \
+    --o-class-weight Specific_DB_merged_weighted.qza
+
+qiime feature-classifier fit-classifier-naive-bayes \
+    --i-reference-reads Specific_DB_seqs_dereplicated_uniq.qza \
+    --i-reference-taxonomy Specific_DB_tax_dereplicated_uniq.qza \
+    --i-class-weight Specific_DB_merged_weighted.qza \
+    --o-classifier Specific_DB_weighted_classifier.qza
 ```
