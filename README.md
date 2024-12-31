@@ -23,15 +23,14 @@ Future plans include developing classifiers for Holstein, Jersey, Charolais, and
 ### For shotgun sequencing
 1. Pre-processing
 ```
-fastp fastp \
-		--in1 Sample_1.fastq.gz \
-		--in2 Sample_2.fastq.gz \
-		--out1 Sample_fastp_1.fastq.gz \
-		--out2 Sample_fastp_1.fastq.gz \
-		--unpaired1  Sample_fastp_unpaired_1.fastq.gz \
-		--unpaired2  Sample__fastp_unpaired_2.fastq.gz \
-		--html  Sample_fastp.html \
-		--thread 16 --verbose
+fastp fastp \--in1 Sample_1.fastq.gz \
+    --in2 Sample_2.fastq.gz \
+    --out1 Sample_fastp_1.fastq.gz \
+    --out2 Sample_fastp_1.fastq.gz \
+    --unpaired1  Sample_fastp_unpaired_1.fastq.gz \
+    --unpaired2  Sample__fastp_unpaired_2.fastq.gz \
+    --html  Sample_fastp.html \
+    --thread 16 --verbose
 ```
 2. Filter host and feed ingredient genome
 ```
