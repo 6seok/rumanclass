@@ -32,10 +32,13 @@ fastp fastp \--in1 Sample_1.fastq.gz \
     --html  Sample_fastp.html \
     --thread 16 --verbose
 ```
-2. Filter host and feed ingredient genome
+2. Filter host or feed ingredient genome
 ```
 ## Build bowtie2 index
-bowtie2-build -f SNU_Hanwoo_genome.fna ./SNU_Hanwoo_bowtie2_db/SNU_Hanwoo_genome.btindex --threads 10
+    bowtie2-build \
+    -f SNU_Hanwoo_genome.fna \
+    ./SNU_Hanwoo_bowtie2_db/SNU_Hanwoo_genome.btindex \
+    --threads 10
 ```
 ```
 ## Mapping using bowtie2
@@ -53,7 +56,12 @@ samtools view \
 ```
 3. SortMeRNA for extract rRNA sequence
 ```
-
+sortmerna \
+    --ref /home/ryukseok/_DATABASEs/sortmerna_db/pr2_version_5.0.0_SSU_UTAX.fasta \
+    --reads Sample_filtered.fastq \
+    --workdir Sample_SortMeRNA \
+    --threads 30 \
+    --fastx
 ```
 4. QIIME2 import
 ```
