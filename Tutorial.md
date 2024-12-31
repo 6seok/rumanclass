@@ -1,9 +1,6 @@
 
 #  Tutorial
 
-## Workflow
-![image](https://github.com/user-attachments/assets/ee4b9abe-bac2-44ff-b10f-a3ed6defe993)
-
 ## For shotgun sequencing
 ### 1. Pre-processing
 ```
