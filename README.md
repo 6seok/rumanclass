@@ -4,7 +4,7 @@
 
 This method was developed to provide enhanced resolution for ruminant microbiome analysis. It is an advanced version of the approach proposed by Kaehler et al. (2019). The method utilizes open-source sequences available from the NCBI BioProject respiratory database and employs preprocessing steps alongside the QIIME2 default workflow.
 
-For detailed instructions, please refer to the **[Tutorial](https://github.com/6seok/rumanclass/tree/main#tutorial)**.
+For detailed instructions, please refer to the **[Tutorial](https://github.com/6seok/rumanclass/blob/main/Tutorial.md#tutorial)**.
 
 As of January 2025, a species-specific weighted classifier for Hanwoo cattle has been created. 
 Future plans include developing classifiers for Holstein, Jersey, Charolais, and Aberdeen Angus breeds.
