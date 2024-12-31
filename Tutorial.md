@@ -1,4 +1,3 @@
-
 #  Tutorial
 
 ## For shotgun sequencing
@@ -125,21 +124,39 @@ qiime feature-table merge-seqs --i-data \
 ```
 ## Export datasets
 ```
+# Export tables
 qiime tools export \
-
+--input-path merged_table.qza
+--output-path ./
+mv feature-table.biom merged_table.biom
+biom convert -i merged_table.biom -o merged_table.tsv --to-tsv 
+```
+```
+# Export representative sequences
+qiime tools export \
+--input-path merged_rep-seqs.qza
+--output-path ./
+mv dna-sequences.fasta merged_rep-seqs.fasta
 ```
 
 ## Combined representative sequences and table
-Use the `combined-multiprocessing.py` script available in this repository to merge the table and representative sequences based on feature IDs. While you can use unmerged tables and representative sequences, additional processing steps will be required.
+**IMPORTANT** | Use the `combined-multiprocessing.py` script available in this repository to merge the table and representative sequences based on feature IDs. While you can use unmerged tables and representative sequences, additional processing steps will be required.
 ```
 python3 combined-multiprocessing.py \
-    --input-seq merged_rep-seqs.fasta
-    --input-table merged_table.tsv
-    --output merged_processed.tsv
+    --input-seq merged_rep-seqs.fasta \
+    --input-table merged_table.tsv \
+    --output merged_processed.tsv \
     --threads 20
 ```
 
-## Re-import as QIIME2 artifact
+## Re-import as QIIME2 artifact and process input format for weighting
 ```
-qiime import 
+biom convert -i merged_processed.tsv -o merged_processed.biom
+qiime tools import \
+    --input-path merged_processed.biom \
+    --output-path merged_processed.qza \
+    --type 'FeatureTable[Frequency]'
+```
+```
+
 ```
