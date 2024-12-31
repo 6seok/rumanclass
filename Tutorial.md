@@ -125,10 +125,21 @@ qiime feature-table merge-seqs --i-data \
 ```
 ## Export datasets
 ```
+qiime tools export \
 
 ```
 
 ## Combined representative sequences and table
-Use the `filter_processed_table.py` script available in this repository to merge the table and representative sequences based on feature IDs. While you can use unmerged tables and representative sequences, additional processing steps will be required.
+Use the `combined-multiprocessing.py` script available in this repository to merge the table and representative sequences based on feature IDs. While you can use unmerged tables and representative sequences, additional processing steps will be required.
 ```
-filter_processed_table.py
+python3 combined-multiprocessing.py \
+    --input-seq merged_rep-seqs.fasta
+    --input-table merged_table.tsv
+    --output merged_processed.tsv
+    --threads 20
+```
+
+## Re-import as QIIME2 artifact
+```
+qiime import 
+```
