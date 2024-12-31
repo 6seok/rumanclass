@@ -7,6 +7,7 @@ This method was developed to provide enhanced resolution for ruminant microbiome
 For detailed instructions, please refer to the **[Tutorial](https://github.com/6seok/rumanclass/blob/main/Tutorial.md#tutorial)**.
 
 As of January 2025, a species-specific weighted classifier for Hanwoo cattle has been created. 
+
 Future plans include developing classifiers for Holstein, Jersey, Charolais, and Aberdeen Angus breeds.
 
 ***
