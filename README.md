@@ -14,3 +14,6 @@ Future plans include developing classifiers for Holstein, Jersey, Charolais, and
 **If you have referenced this workflow or used the pre-built weighted classifier, please include the following citation:**
 + R Kang and T Park (2025), Manually weighted classifier achieves higher resolution in species-specific ruminal microbi-ome analysis compared to standard or average weighted classifiers ,  [UNDECISION], https://doi.org/UNDECISION
 ***
+
+## Workflow
+![image](https://github.com/user-attachments/assets/ee4b9abe-bac2-44ff-b10f-a3ed6defe993)
