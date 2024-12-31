@@ -123,3 +123,12 @@ qiime feature-table merge-seqs --i-data \
     ...
 --o-merged-rep-seqs merged_rep-seqs.qza
 ```
+## Export datasets
+```
+
+```
+
+## Combined representative sequences and table
+Use the `filter_processed_table.py` script available in this repository to merge the table and representative sequences based on feature IDs. While you can use unmerged tables and representative sequences, additional processing steps will be required.
+```
+filter_processed_table.py
