@@ -1,6 +1,6 @@
 # RUMANCLASS (RUminal microbiome MANually CLASSifier)
 
-## QIIME2 manually weighted classifier for species-specific ruminal e micribome analysis
+## QIIME2 manually weighted classifier for species-specific ruminal microbiome analysis
 
 This method was developed to provide enhanced resolution for ruminant microbiome analysis. It is an advanced version of the approach proposed by Kaehler et al. (2019). The method utilizes open-source sequences available from the NCBI BioProject respiratory database and employs preprocessing steps alongside the QIIME2 default workflow.
 
