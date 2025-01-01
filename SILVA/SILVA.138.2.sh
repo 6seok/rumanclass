@@ -40,40 +40,39 @@ qiime feature-classifier classify-sklearn \
 --i-classifier silva_138.2_SSU_NR99_classifier.qza \
 --i-reads merged_sv.qza \
 --p-confidence disable --p-n-jobs 10 \
---o-classification SILVA_merged_classification.qza
+--o-classification SILVA_138.2_merged_classification.qza
 
 ##################################################################################
 
 qiime tools export \
---input-path SILVA_merged_classification.qza \
+--input-path SILVA_138.2_merged_classification.qza \
 --output-path 
-
-mv taxonomy.tsv SILVA_merged_classification.tsv
-grep -v -e "Mitochondria" -e "Chloroplast" SILVA_merged_classification.tsv > SILVA_merged_classification_filtered.tsv
+mv taxonomy.tsv SILVA_138.2_merged_classification.tsv
+grep -v -e "Mitochondria" -e "Chloroplast" SILVA_138.2_merged_classification.tsv > SILVA_138.2_merged_classification_filtered.tsv
 
 qiime tools import \
---input-path SILVA_merged_classification_filtered.tsv \
---output-path SILVA_merged_classification_filtered.qza \
+--input-path SILVA_138.2_merged_classification_filtered.tsv \
+--output-path SILVA_138.2_merged_classification_filtered.qza \
 --type 'FeatureData[Taxonomy]'
 
 qiime taxa filter-table --i-table merged_processed.qza \
---i-taxonomy SILVA_merged_classification.qza \
+--i-taxonomy SILVA_138.2_merged_classification.qza \
 --p-exclude Chloroplast,Mitochondria \
---o-filtered-table SILVA_merged_processed_filtered.qza
+--o-filtered-table SILVA_138.2_merged_processed_filtered.qza
 
 ##################################################################################
 
 qiime clawback generate-class-weights \
 --i-reference-sequences silva_138.2_SSU_NR99_RNA-seqs_dereplicated_uniq.qza \
 --i-reference-taxonomy silva_138.2_SSU_NR99_tax_dereplicated_uniq.qza \
---i-samples SILVA_merged_processed_filtered.qza \
---i-taxonomy-classification SILVA_merged_classification_filtered.qza \
---o-class-weight SILVA_merged_weighted.qza
+--i-samples SILVA_138.2_merged_processed_filtered.qza \
+--i-taxonomy-classification SILVA_138.2_merged_classification_filtered.qza \
+--o-class-weight SILVA_138.2_merged_weighted.qza
 
 ##################################################################################
 
 qiime feature-classifier fit-classifier-naive-bayes \
 --i-reference-reads silva_138.2_SSU_NR99_RNA-seqs_dereplicated_uniq.qza \
 --i-reference-taxonomy silva_138.2_SSU_NR99_tax_dereplicated_uniq.qza \
---i-class-weight SILVA_merged_weighted.qza \
+--i-class-weight SILVA_138.2_merged_weighted.qza \
 --o-classifier SILVA_138.2_weighted_classifier.qza
