@@ -47,7 +47,7 @@ qiime feature-classifier classify-sklearn \
 
 qiime tools export \
 --input-path GTDB_220.0_merged_classification.qza \
---output-path 
+--output-path ./
 mv taxonomy.tsv GTDB_220.0_merged_classification.tsv
 grep -v -e "Mitochondria" -e "Chloroplast" GTDB_220.0_merged_classification.tsv > GTDB_220.0_merged_classification_filtered.tsv
 
