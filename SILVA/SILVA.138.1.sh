@@ -46,7 +46,7 @@ qiime feature-classifier classify-sklearn \
 
 qiime tools export \
 --input-path SILVA_138.1_merged_classification.qza \
---output-path 
+--output-path ./
 mv taxonomy.tsv SILVA_138.1_merged_classification.tsv
 grep -v -e "Mitochondria" -e "Chloroplast" SILVA_138.1_merged_classification.tsv > SILVA_138.1_merged_classification_filtered.tsv
 
