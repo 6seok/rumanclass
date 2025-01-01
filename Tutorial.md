@@ -151,7 +151,7 @@ python3 combined-multiprocessing.py \
 
 ## Re-import as QIIME2 artifact and process input format for weighting
 ```
-biom convert -i merged_processed.tsv -o merged_processed.biom
+biom convert -i merged_processed.tsv -o merged_processed.biom --to-hdf5
 qiime tools import \
     --input-path merged_processed.biom \
     --output-path merged_processed.qza \
