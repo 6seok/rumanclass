@@ -44,7 +44,7 @@ qiime feature-classifier classify-sklearn \
 
 qiime tools export \
 --input-path NCBI_merged_classification.qza \
---output-path 
+--output-path ./
 mv taxonomy.tsv NCBI_merged_classification.tsv
 grep -v -e "Mitochondria" -e "Chloroplast" NCBI_merged_classification.tsv > NCBI_merged_classification_filtered.tsv
 
