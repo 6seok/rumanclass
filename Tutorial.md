@@ -37,7 +37,7 @@ samtools view \
 ### 3. SortMeRNA for extract rRNA sequence
 ```
 sortmerna \
-    --ref /home/ryukseok/_DATABASEs/sortmerna_db/pr2_version_5.0.0_SSU_UTAX.fasta \
+    --ref /home/ryukseok/_DATABASEs/sortmerna_db/smr_v4.3_sensitive_db.fasta \
     --reads Sample_filtered.fastq \
     --workdir Sample_SortMeRNA \
     --threads 30 \
