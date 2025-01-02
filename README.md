@@ -15,7 +15,7 @@ The Hanwoo manually weighted classifier is available for use with classifiers bu
 - RDP (ver 2.14)
 - GTDB (220.0)
 
-You can access the classifiers at **https://doi.org/10.5281/zenodo.14584515**.
+You can access the classifiers at **[Release note](https://github.com/6seok/rumanclass/releases)**.
 
 Future plans include developing classifiers for Holstein, Jersey, Charolais, and Aberdeen Angus breeds.
 
