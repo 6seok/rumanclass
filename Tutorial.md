@@ -196,7 +196,7 @@ qiime taxa filter-table \
     --p-exclude Chloroplast,Mitochondria \
     --o-filtered-table merged_processed_filtered.qza
 ```
-### 3. Generate class weights and duild classifier
+### 3. Generate class weights and build classifier
 ```
 qiime clawback generate-class-weights \
     --i-reference-sequences Specific_DB_seqs_dereplicated_uniq.qza \
